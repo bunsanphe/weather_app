@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script src="script.js"></script>
+    <title>Weather Forecast</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+        <a class="navbar-brand">Weather Dashboard</a>
+    </nav>
+
+<!-- <div class="container-md"> -->
+    <!-- city search -->
+    <div class="main">
+    <div class="row">
+        <div class="col-4 citySearch">
+            <h1>Search for a city:</h1>
+            <form class="submit">
+                <input type="text" id="city" placeholder="Search..">
+                <button type="submit" id="submitBtn"><i class=" fa fa-search"></i></button>
+            </form>
+            <!-- <input type="text" id="input" placeholder="City name"><button type="button" class="submitBtn fas fa-save"></button> -->
+        </div>
+
+        <div class="col-8 results">
+            <div class="row cityResult">
+                <!-- City Results -->
+                <div class="card" style="width: 95%;">
+                    <div class="card-body">
+                      <h5 class="card-title">City</h5>
+                      <p class="card-text temperateure">Temperature: <span>F</span></p>
+                      <p class="card-text humidity">Humidity: <span>F</span></p>
+                      <p class="card-text windSpeed">Wind Speed: <span>F</span></p>
+                      <p class="card-text uvIndex">UV Index: <span>F</span></p>
+                    </div>
+                  </div>
+
+            
+            <div class="row fiveDayForcast">
+                <h1>Five Day Forcast:</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- city result -->
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script src="script.js"></script>
+<!-- </div> container -->
+
+</body>
+</html>

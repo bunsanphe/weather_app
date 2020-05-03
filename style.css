@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  form.submit input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+    height: 20px;
+  }
+  
+  form.submit button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+    height: 20px;
+  }
+  
+  form.submit button:hover {
+    background: #0b7dda;
+  }
+  
+  form.submit::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+.navbar {
+    justify-content: center;
+}
+
+.navbar-brand {
+    font-size: 30px;
+}
+
+.cityResult {
+    min-height: 200px;
+}
+
+h1 {
+    font-size: 20;
+}
+
+.main {
+    margin: 15px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
