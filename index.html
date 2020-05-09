@@ -4,8 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-    <script src="script.js"></script>
+    
     <title>Weather Forecast</title>
 </head>
 <body>
@@ -15,7 +14,7 @@
 
 <!-- <div class="container-md"> -->
     <!-- city search -->
-    <div class="main">
+<div class="main">
     <div class="row">
         <div class="col-4 citySearch">
             <h1>Search for a city:</h1>
@@ -31,18 +30,73 @@
                 <!-- City Results -->
                 <div class="card" style="width: 95%;">
                     <div class="card-body">
-                      <h5 class="card-title">City</h5>
-                      <p class="card-text temperateure">Temperature: <span>F</span></p>
-                      <p class="card-text humidity">Humidity: <span>F</span></p>
-                      <p class="card-text windSpeed">Wind Speed: <span>F</span></p>
-                      <p class="card-text uvIndex">UV Index: <span>F</span></p>
+                      <h5 class="card-title cityCard">City</h5><img id="wicon" src="" alt="">
+                      <p class="card-text temp">Temperature: <span>F</span></p>
+                      <p class="card-text humidity">Humidity: <span>%</span></p>
+                      <p class="card-text windSpeed">Wind Speed: <span>MPH</span></p>
+                      <p class="card-text uvIndex">UV Index: <span></span></p>
                     </div>
-                  </div>
+                </div>
+            </div>    
 
             
-            <div class="row fiveDayForcast">
-                <h1>Five Day Forcast:</h1>
-            </div>
+                <div class="row fiveDayForcast">
+                    <h1>Five Day Forcast:</h1>
+                </div>
+
+                <div class="row fiveDayCard">
+                    <div class="col dayOne">
+                        <div class="card" style="width: 95%;">
+                            <div class="card-body fiveDay">
+                              <h5 class="card-title dateFiveDay" id="dateDay_1">Day</h5>
+                              <img class="iconFiveDay" src="" alt="">
+                              <p class="card-text tempFiveDay">Temperature: <span>F</span></p>
+                              <p class="card-text humidityFiveDay" id="dailyHumidity_1">Humidity: <span>%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col dayTwo">
+                        <div class="card" style="width: 95%;">
+                            <div class="card-body fiveDay">
+                              <h5 class="card-title dateFiveDay" id="dateDay_2">Day</h5>
+                              <img class="iconFiveDay" src="" alt="">
+                              <p class="card-text tempFiveDay">Temperature: <span>F</span></p>
+                              <p class="card-text humidityFiveDay" id="dailyHumidity_2">Humidity: <span>%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col dayThree">
+                        <div class="card" style="width: 95%;">
+                            <div class="card-body fiveDay">
+                              <h5 class="card-title dateFiveDay" id="dateDay_3">Day</h5>
+                              <img class="iconFiveDay" src="" alt="">
+                              <p class="card-text tempFiveDay">Temperature: <span>F</span></p>
+                              <p class="card-text humidityFiveDay">Humidity: <span>%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col dayFour">
+                        <div class="card" style="width: 95%;">
+                            <div class="card-body fiveDay">
+                              <h5 class="card-title dateFiveDay" id="dateDay_4">Day</h5>
+                              <img class="iconFiveDay" src="" alt="">
+                              <p class="card-text tempFiveDay">Temperature: <span>F</span></p>
+                              <p class="card-text humidityFiveDay">Humidity: <span>%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col dayFive">
+                        <div class="card" style="width: 95%;">
+                            <div class="card-body fiveDay">
+                              <h5 class="card-title dateFiveDay" id="dateDay_5">Day</h5>
+                              <img class="iconFiveDay" src="" alt="">
+                              <p class="card-text tempFiveDay">Temperature: <span>F</span></p>
+                              <p class="card-text humidityFiveDay">Humidity: <span>%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           
         </div>
     </div>
 </div>
@@ -50,7 +104,9 @@
     <!-- city result -->
 
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="script.js"></script>
+
 <!-- </div> container -->
 
 </body>

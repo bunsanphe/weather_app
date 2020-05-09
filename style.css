@@ -58,3 +58,7 @@ h1 {
 .card {
     margin-bottom: 20px;
 }
+
+.card-body {
+  background-color:lightblue;
+}
