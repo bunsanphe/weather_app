@@ -62,3 +62,15 @@ h1 {
 .card-body {
   background-color:lightblue;
 }
+
+.uvHigh {
+  background-color: red;
+}
+
+.uvMedium {
+  background-color: yellow;
+}
+
+.uvLow {
+  background-color: green;
+}

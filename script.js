@@ -1,15 +1,22 @@
 $(document).ready(() => {
+var cityArr;
+
+if (localStorage.getItem("search")) {
+    cityArr = JSON.parse(localStorage.getItem("search"))
+} else {
+    cityArr = []
+}
+//console.log(cityArr);
 
 var currentDate = moment().format("MM.DD.YYYY");
 
-
-$("#submitBtn").on("click", function(){
+function submitCity(city) { //town or searcVar // 'boston' , 'spokane'
     event.preventDefault();
-    var city = $("#city").val();
-
+    //var city = $("#city").val();
+    console.log(city);
+    cityArr.push(city)
     var apiKey = "eab6d01fa24f92ffa99be7e88ac10b4b";
     var queryURL = ("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey);
-    var fiveDayQueryURL = ("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + apiKey);
 
     $.ajax({url: queryURL, method: "GET"}).then(function(response){
         var city = response.name,
@@ -20,22 +27,21 @@ $("#submitBtn").on("click", function(){
             humidity = response.main.humidity,
             windSpeed = response.wind.speed;
             iconURL = ("http://openweathermap.org/img/w/" + iconcode + ".png");
-        localStorage.setItem("search", city)
-        cityResultBlock()
+            console.log(cityArr);
+            
+        localStorage.setItem("search", JSON.stringify(cityArr))
         
         $(".cityCard").text(city + " " + currentDate + " ")
         $("#wicon").attr("src", iconURL);
-        $(".temp span").text(temp + "F");
+        $(".temp span").text(temp + " F");
         $(".humidity span").text(humidity + "%");
-        $(".windSpeed span").text(windSpeed + "MPH")
+        $(".windSpeed span").text(windSpeed + " MPH")
 
         //*uv results
         var uvURL = ("http://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + latCoord + "&lon=" + lonCoord);
         $.ajax({url: uvURL, method: "GET"}).then(function(response){
             var uvIndex = response.value;
-            var uvIndexBtnEl = $("<button></button>")
-            uvIndexBtnEl.text(uvIndex);
-            $(".uvIndex span").append(uvIndexBtnEl);
+            $(".uvBtn").text(uvIndex);
         })
 
 
@@ -44,35 +50,35 @@ $("#submitBtn").on("click", function(){
         $.ajax({url: fiveDayQueryURL, method: "GET"}).then(function(response){
             console.log(response)
             // timeStamp = new Date((response.daily[i].dt)*1000);
-                var formattedDate1 = new Date((response.daily[1].dt)*1000);
+                var formattedDate1 = new Date((response.daily[0].dt)*1000);
                 var d = formattedDate1.getDate();
                 var m = formattedDate1.getMonth();
                 m +=1
                 var y = formattedDate1.getFullYear();
                 $("#dateDay_1").text(m + "." + d + "." + y)
 
-                var formattedDate2 = new Date((response.daily[2].dt)*1000);
+                var formattedDate2 = new Date((response.daily[1].dt)*1000);
                 var d = formattedDate2.getDate();
                 var m = formattedDate2.getMonth();
                 m +=1
                 var y = formattedDate2.getFullYear();
                 $("#dateDay_2").text(m + "." + d + "." + y)
 
-                var formattedDate3 = new Date((response.daily[3].dt)*1000);
+                var formattedDate3 = new Date((response.daily[2].dt)*1000);
                 var d = formattedDate3.getDate();
                 var m = formattedDate3.getMonth();
                 m +=1
                 var y = formattedDate3.getFullYear();
                 $("#dateDay_3").text(m + "." + d + "." + y)
 
-                var formattedDate4 = new Date((response.daily[4].dt)*1000);
+                var formattedDate4 = new Date((response.daily[3].dt)*1000);
                 var d = formattedDate4.getDate();
                 var m = formattedDate4.getMonth();
                 m +=1
                 var y = formattedDate4.getFullYear();
                 $("#dateDay_4").text(m + "." + d + "." + y)
 
-                var formattedDate5 = new Date((response.daily[5].dt)*1000);
+                var formattedDate5 = new Date((response.daily[4].dt)*1000);
                 var d = formattedDate5.getDate();
                 var m = formattedDate5.getMonth();
                 m +=1
@@ -92,9 +98,7 @@ $("#submitBtn").on("click", function(){
 
             //*humidity five day
             $(".humidityFiveDay").each(function(i){
-                // var i = 1
                 $(this).text("Humidity: " + response.daily[i].humidity +"%");
-                console.log(this)
             });
             
     
@@ -102,20 +106,31 @@ $("#submitBtn").on("click", function(){
     })
 
 
+}
+
+for (var i = 0; i < cityArr.length; i++) { 
+    var resultEl = $("<button>").text(cityArr[i]);
+    resultEl.attr('data-value', cityArr[i])
+    resultEl.attr('class', 'savedCity')
+    $("#cityResults").append(resultEl);
+    }
+
+$("#submitBtn").on("click", function(params) {
+    params.preventDefault()
+    var town = $("#city").val();
+    submitCity(town);
 })//submit closing bracket
 
-function cityResultBlock(){
-    
-    var cityResult = localStorage.getItem("search");
-    console.log(cityResult)
-    var resultEl = $("<p></p>").text(cityResult);
-    $(".submit").append(resultEl);
-    
-}
-//get the city val on click and combine qureryURL/API
-//view file to get parameters
-//get value and append to search block by creating a new element first
-//store paraments and append to page
+$('.savedCity').click(function() {
+    var searchVar = $(this).attr('data-value')
+    console.log(searchVar);
+    submitCity(searchVar)
+})
 
 
-})//ready closing bracket
+/*function uvIndexColor(){
+    
+}*/
+
+})//*ready closing bracket
+
