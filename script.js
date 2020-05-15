@@ -41,8 +41,21 @@ function submitCity(city) { //town or searcVar // 'boston' , 'spokane'
         var uvURL = ("http://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + latCoord + "&lon=" + lonCoord);
         $.ajax({url: uvURL, method: "GET"}).then(function(response){
             var uvIndex = response.value;
-            $(".uvBtn").text(uvIndex);
+            $("#uvBtn").text(uvIndex);
+            if (uvIndex > 7){
+                $("#uvBtn").addClass("uvHigh");
+                $("#uvBtn").removeClass("uvMedium");
+                $("#uvBtn").removeClass("uvLow");
+
+            }
+            else if (uvIndex <= 2){
+                $("#uvBtn").addClass("uvLow")
+            }
+            else{
+                $("#uvBtn").addClass("uvMedium")
+            }
         })
+
 
 
         //*five day results
@@ -127,10 +140,6 @@ $('.savedCity').click(function() {
     submitCity(searchVar)
 })
 
-
-/*function uvIndexColor(){
-    
-}*/
 
 })//*ready closing bracket
 
