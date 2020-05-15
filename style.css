@@ -63,6 +63,11 @@ h1 {
   background-color:lightblue;
 }
 
+.savedCity {
+  width: 250px;
+}
+
+/* UV highligh */
 .uvHigh {
   background-color: red;
 }
@@ -73,4 +78,11 @@ h1 {
 
 .uvLow {
   background-color: green;
+}
+
+
+@media screen and (max-width: 720px) {
+  .savedCity {
+    width: 100px;
+  }
 }

@@ -6,13 +6,11 @@ if (localStorage.getItem("search")) {
 } else {
     cityArr = []
 }
-//console.log(cityArr);
 
 var currentDate = moment().format("MM.DD.YYYY");
 
-function submitCity(city) { //town or searcVar // 'boston' , 'spokane'
-    event.preventDefault();
-    //var city = $("#city").val();
+function submitCity(city) {
+    // event.preventDefault();
     console.log(city);
     var apiKey = "eab6d01fa24f92ffa99be7e88ac10b4b";
     var queryURL = ("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey);
@@ -49,19 +47,19 @@ function submitCity(city) { //town or searcVar // 'boston' , 'spokane'
             }
             else if (uvIndex <= 2){
                 $("#uvBtn").addClass("uvLow")
+                $("#uvBtn").removeClass("uvMedium");
+                $("#uvBtn").removeClass("uvHigh");
             }
             else{
                 $("#uvBtn").addClass("uvMedium")
+                $("#uvBtn").removeClass("uvLow");
+                $("#uvBtn").removeClass("uvHigh");
             }
         })
-
-
 
         //*five day results
         var fiveDayQueryURL = ("https://api.openweathermap.org/data/2.5/onecall?lat=" + latCoord + "&lon=" + lonCoord + "&units=imperial&exclude=hourly,current&appid=" + apiKey);
         $.ajax({url: fiveDayQueryURL, method: "GET"}).then(function(response){
-            console.log(response)
-            // timeStamp = new Date((response.daily[i].dt)*1000);
                 var formattedDate1 = new Date((response.daily[0].dt)*1000);
                 var d = formattedDate1.getDate();
                 var m = formattedDate1.getMonth();
@@ -122,34 +120,39 @@ function submitCity(city) { //town or searcVar // 'boston' , 'spokane'
 
 
 for (var i = 0; i < cityArr.length; i++) { 
-    var resultEl = $("<button>").text(cityArr[i]);
-    resultEl.attr('data-value', cityArr[i])
-    resultEl.attr('class', 'savedCity')
+    var resultEl = $("<button>").add($("<br>")).text(cityArr[i]);
+    resultEl.attr("data-value", cityArr[i])
+    resultEl.attr("class", "savedCity")
     $("#cityResults").append(resultEl);
     }
-
 
 $("#submitBtn").on("click", function(params) {
     params.preventDefault()
     var city = $("#city").val();
     if(!cityArr.includes(city)){
         cityArr.push(city)
+        cityBtn(city);
         cityStorage();
     }
-    
-    
     submitCity(city);
-})//submit closing bracket
+})
 
 $('.savedCity').click(function() {
     var searchVar = $(this).attr('data-value')
-    console.log(searchVar);
     submitCity(searchVar)
 })
+
+function cityBtn(city){
+    var resultEl = $("<button>").text(city);
+    resultEl.attr("data-value", city);
+    resultEl.attr("class", "savedCity");
+    $("#cityResults").append(resultEl);
+}
 
 function cityStorage(){
     localStorage.setItem("search", JSON.stringify(cityArr))
 }
+
 
 })//*ready closing bracket
 
